@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: live-cricket-score-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: live-cricket-score
+  template:
+    metadata:
+      labels:
+        app: live-cricket-score
+    spec:
+      containers:
+        - name: live-cricket-score-container
+          image: gcr.io/x-landing-466108-p9/live-cricket-score-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: live-cricket-score-service
+spec:
+  selector:
+    app: live-cricket-score
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer

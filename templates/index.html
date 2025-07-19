@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Cricket Scores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .top-bar {
+            background: linear-gradient(to right, #00416a, #0f2027);
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #29f0b4;
+            border-bottom: 2px solid #29f0b4;
+            padding-bottom: 5px;
+        }
+
+        .custom-card, .custom-upcoming-card {
+            background-color: #161b22;
+            border: 1px solid #2f4f4f;
+            border-radius: 12px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .custom-card:hover, .custom-upcoming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 255, 170, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            color: #ddd;
+            border: none;
+            font-size: 16px;
+        }
+
+        .match-teams {
+            font-weight: bold;
+            color: #71d0f5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        .recent-match-text {
+        color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <img src="https://storage.googleapis.com/logoimages15/logo.jpeg" alt="Logo">
+        Live Cricket Score App
+    </div>
+
+    <div class="container mt-4">
+        <h2>Recent Matches</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for score in cricket_scores %}
+                <div class="col">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                           <div class="recent-match-text"> 
+                            {{ score | safe }}
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Upcoming Matches</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for match in upcoming_matches %}
+                <div class="col">
+                    <div class="card custom-upcoming-card">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div><strong>Date:</strong> {{ match['Date'] }}</div>
+                                    <div><strong>Description:</strong> {{ match['Description'] }}</div>
+                                    <div class="match-teams"><strong>Teams:</strong> {{ match['Teams'] }}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Live Cricket Score. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>
