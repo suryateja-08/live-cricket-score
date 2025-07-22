@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: live-cricket-score-container
-          image: gcr.io/rugged-feat-465115-p7/live-cricket-score-app:v1
+          image: gcr.io/rugged-feat-465115-p7/live-cricket-score-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
