@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:$SHORT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:$SHORT_SHA']
+    args: ['push', 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:latest']
 
   -  name: "gcr.io/cloud-builders/gke-deploy"
      args:
@@ -12,7 +12,7 @@ steps:
      - --location=us-central1
      - --cluster=autopilot-cluster-1
 images:
-  - 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:$SHORT_SHA'
+  - 'gcr.io/rugged-feat-465115-p7/live-cricket-score-app:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
